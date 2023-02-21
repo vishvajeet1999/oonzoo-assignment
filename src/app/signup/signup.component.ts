@@ -1,7 +1,9 @@
+
+
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
-import { emailValidator } from '../directives/email-validator.directive';
+import { emailValidator } from '../../directives/email-validator.directive';
 
 interface IUser {
   name: string;
@@ -12,11 +14,11 @@ interface IUser {
 }
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
+  selector: 'app-signup',
+  templateUrl: './signup.component.html',
+  styleUrls: ['./signup.component.scss']
 })
-export class AppComponent implements OnInit {
+export class SignupComponent implements OnInit {
 
   reactiveForm!: FormGroup;
   user: IUser;
@@ -64,7 +66,7 @@ export class AppComponent implements OnInit {
     return this.reactiveForm.get('password')!;
   }
 
-  public validate(): void {
+  public signup(): void {
     if (this.reactiveForm.invalid) {
       for (const control of Object.keys(this.reactiveForm.controls)) {
         this.reactiveForm.controls[control].markAsTouched();
@@ -81,3 +83,4 @@ export class AppComponent implements OnInit {
   }
 
 }
+
