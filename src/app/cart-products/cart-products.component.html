@@ -2,7 +2,7 @@
 
 
 <div class="cards">
-    <div *ngFor="let item of products" class="cardStyling">
+    <div *ngFor="let item of cartProducts" class="cardStyling">
         <mat-card class="example-card">
             <!-- <mat-card-header>
               <div mat-card-avatar class="example-header-image"></div>
@@ -19,7 +19,7 @@
               </p>
             </mat-card-content>
             <mat-card-actions>
-              <button mat-raised-button color="primary" (click) ="addToCart(item.id)">Add to Cart</button>
+              <button mat-raised-button color="primary" (click) ="buyProduct(item.id)"> Buy Product</button>
             </mat-card-actions>
           </mat-card>
     </div>
@@ -27,10 +27,11 @@
 
 <div class="productsHeader">
     <div class="leftContent">
-        <h6 >Products</h6>
+        <h6 style="cursor: pointer" (click)="navigateToProducts()">Products</h6>
     </div>
-    <div class="rightContent" >
-        <button mat-raised-button color="primary" (click)="navigateToCart()"
+
+    <div class="rightContent">
+        <button mat-raised-button color="primary"
         [matBadge]="numberOfCartItems" matBadgePosition="after" matBadgeColor="accent">
         <mat-icon matBadgeColor="warn">add_shopping_cart</mat-icon>
     </button>

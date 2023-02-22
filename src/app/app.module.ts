@@ -12,6 +12,11 @@ import { LoggedinService } from './logged-in.service';
 import { AuthGuard } from './auth.guard';
 import {MatButtonModule} from '@angular/material/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatCardModule} from '@angular/material/card';
+import {MatBadgeModule} from '@angular/material/badge';
+import {MatIconModule} from '@angular/material/icon';
+import { CartProductsComponent } from './cart-products/cart-products.component';
+
 
 @NgModule({
   declarations: [
@@ -20,13 +25,17 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     SignupComponent,
     SigninComponent,
     ProductsComponent,
+    CartProductsComponent,
   ],
   imports: [
     BrowserModule,
     ReactiveFormsModule,
     AppRoutingModule,
     MatButtonModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatCardModule,
+    MatBadgeModule,
+    MatIconModule
   ],
   providers: [
     LoggedinService,
