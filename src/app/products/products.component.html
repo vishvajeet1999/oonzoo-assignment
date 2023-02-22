@@ -1,0 +1,14 @@
+<div style="margin-top: 70px;"></div>
+
+<div *ngFor="let item of products">
+    {{item.title}}
+</div>
+
+<div class="productsHeader">
+    <div class="leftContent">
+        <h6>Products</h6>
+    </div>
+    <div class="rightContent">
+        <button mat-raised-button color="accent" (click)="logout()">Log Out</button>
+    </div>
+</div>

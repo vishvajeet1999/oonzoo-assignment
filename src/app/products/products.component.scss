@@ -1,0 +1,18 @@
+.productsHeader{
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 70px;
+    background-color: #e9e0e0e7;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+    .leftContent{
+        padding: 15px;
+    }
+    .rightContent{
+        padding: 15px;
+    }
+}

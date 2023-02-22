@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { emailValidator } from '../../directives/email-validator.directive';
+import axios from 'axios'
+import { LoggedinService } from '../logged-in.service';
+import { Router } from '@angular/router';
 
 interface IUser {
   email: string;
@@ -19,7 +22,7 @@ export class SigninComponent implements OnInit {
   reactiveForm!: FormGroup;
   user: IUser;
 
-  constructor() {
+  constructor( private loggedinService: LoggedinService, private router:Router) {
     this.user = {} as IUser;
   }
 
@@ -57,6 +60,21 @@ export class SigninComponent implements OnInit {
     }
 
     this.user = this.reactiveForm.value;
+    axios.post('http://localhost:8080/user/signin',this.user).then(res =>{
+      console.log(res.data, "data")
+      if(res.data.notFound){
+        alert('User not Found. Please create an account')
+      }else{
+        if(res.data.wrongPassword){
+          alert('Wrong password. Retry.')
+        }else{
+          if(res.data.status === 'ok'){
+            this.loggedinService.login()
+            this.router.navigate(['products'])
+          }
+        }
+      }
+    })
 
     console.info('Email:', this.user.email);
     console.info('Password:', this.user.password);

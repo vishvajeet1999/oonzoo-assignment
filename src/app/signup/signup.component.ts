@@ -1,13 +1,11 @@
-
-
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import axios from 'axios';
 
 import { emailValidator } from '../../directives/email-validator.directive';
 
 interface IUser {
   name: string;
-  nickname: string;
   email: string;
   password: string;
   showPassword: boolean;
@@ -28,14 +26,12 @@ export class SignupComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    
     this.reactiveForm = new FormGroup({
       name: new FormControl(this.user.name, [
         Validators.required,
         Validators.minLength(1),
         Validators.maxLength(250),
-      ]),
-      nickname: new FormControl(this.user.nickname, [
-        Validators.maxLength(10),
       ]),
       email: new FormControl(this.user.email, [
         Validators.required,
@@ -52,10 +48,6 @@ export class SignupComponent implements OnInit {
 
   get name() {
     return this.reactiveForm.get('name')!;
-  }
-
-  get nickname() {
-    return this.reactiveForm.get('nickname')!;
   }
 
   get email() {
@@ -75,9 +67,17 @@ export class SignupComponent implements OnInit {
     }
 
     this.user = this.reactiveForm.value;
+    axios.post('http://localhost:8080/user/signup', this.user).then(res =>{
+      if(res.data.alreadyExists){
+        alert('User already exists. Login to the Account')
+      }else{
+        alert('user has been created')
+      }
+    })
+
+
 
     console.info('Name:', this.user.name);
-    console.info('Nickname:', this.user.nickname);
     console.info('Email:', this.user.email);
     console.info('Password:', this.user.password);
   }
