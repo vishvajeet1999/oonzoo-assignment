@@ -67,7 +67,7 @@ export class SignupComponent implements OnInit {
     }
 
     this.user = this.reactiveForm.value;
-    axios.post('http://localhost:8080/user/signup', this.user).then(res =>{
+    axios.post('https://oonzoo-assignment-backend.adaptable.app/user/signup', this.user).then(res =>{
       if(res.data.alreadyExists){
         alert('User already exists. Login to the Account')
       }else{
